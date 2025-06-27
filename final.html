@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love and Hearts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="final.css">
+</head>
+<body>
+  <div class="hearts-container"></div>
+  <div class="message-box">
+    <h1>Everything beautiful will come to us,</h1>
+    <h2>and every challenge — we’ll overcome together 💖</h2>
+    <p class="signature">— With all my heart 💌</p>
+  </div>
+
+  <script>
+   const container = document.querySelector('.hearts-container');
+const hearts = [];
+const colors = ['#FFB6C1', '#FF69B4', '#FF6EC7', '#FFC0CB', '#ffffff', '#fde2f3', '#fcd3d3'];
+
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.style.background = colors[Math.floor(Math.random() * colors.length)];
+  const size = 20 + Math.random() * 15;
+  heart.style.width = `${size}px`;
+  heart.style.height = `${size}px`;
+  heart.dataset.size = size;
+
+  const startX = Math.random() * (window.innerWidth - size);
+  const startY = Math.random() * (window.innerHeight - size);
+  const vx = (Math.random() - 0.5) * 2.5;
+  const vy = (Math.random() - 0.5) * 2.5;
+
+  container.appendChild(heart);
+  hearts.push({ element: heart, x: startX, y: startY, vx, vy, size });
+}
+
+function updateHearts() {
+  hearts.forEach(heart => {
+    heart.x += heart.vx;
+    heart.y += heart.vy;
+
+    // Bouncing logic
+    if (heart.x <= 0 || heart.x >= window.innerWidth - heart.size) {
+      heart.vx = -heart.vx;
+    }
+    if (heart.y <= 0 || heart.y >= window.innerHeight - heart.size) {
+      heart.vy = -heart.vy;
+    }
+
+    // Clamp inside screen
+    heart.x = Math.max(0, Math.min(heart.x, window.innerWidth - heart.size));
+    heart.y = Math.max(0, Math.min(heart.y, window.innerHeight - heart.size));
+
+    // Calculate angle based on velocity
+    let angle = Math.atan2(heart.vy, heart.vx) * 180 / Math.PI;
+
+    heart.element.style.left = `${heart.x}px`;
+    heart.element.style.top = `${heart.y}px`;
+    heart.element.style.transform = `rotate(${angle}deg)`;
+  });
+
+  requestAnimationFrame(updateHearts);
+}
+
+for (let i = 0; i < 25; i++) createHeart();
+updateHearts();
+
+  </script>
+</body>
+</html>

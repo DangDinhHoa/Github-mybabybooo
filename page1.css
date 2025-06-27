@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.image-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.full-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#nextPageBtn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #D43F5E;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10;
+}
+
+#nextPageBtn:hover {
+    background-color: #B52E4C;
+    box-shadow: 0 0 10px rgba(255, 211, 218, 0.5);
+}

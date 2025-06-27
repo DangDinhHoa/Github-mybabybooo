@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="page3.css">
+    <title>Full-Screen Image</title>
+</head>
+<body>
+    <div class="image-container">
+        <img src="page3.png" alt="Full-Screen Image" class="full-image">
+        <button id="nextPageBtn" onclick="window.location.href='final.html'">Next Page</button>
+    </div>
+    <script>
+        window.onload = () => {
+            const image = document.querySelector('.full-image');
+            image.style.opacity = '0';
+            setTimeout(() => {
+                image.style.transition = 'opacity 1.5s ease-in-out';
+                image.style.opacity = '1';
+            }, 100);
+        };
+    </script>
+</body>
+</html>
